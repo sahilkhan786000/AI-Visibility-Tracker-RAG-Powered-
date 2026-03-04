@@ -95,31 +95,55 @@ Display Analytics Dashboard
 frontend
 │
 ├── components
+
 │ ├── dashboard
+
 │ │ ├── AnalysisInputPanel.tsx
+
 │ │ ├── Leaderboard.tsx
+
 │ │ ├── PromptTable.tsx
+
 │ │ ├── SessionSidebar.tsx
+
 │ │ └── RAGInsights.tsx
+
 │
+
 ├── services
+
 │ ├── visibilityApi.ts
+
 │ └── sessionApi.ts
+
 │
+
 └── pages
+
 └── Dashboard.tsx
 
 backend
+
 │
+
 ├── controllers
+
 │ └── visibility.controller.ts
+
 │
+
 ├── services
+
 │ ├── ai.service.ts
+
 │ ├── analysis.service.ts
+
 │ ├── insight.service.ts
+
 │ └── vector.service.ts
+
 │
+
 └── index.ts
 
 ---
@@ -144,11 +168,11 @@ npm install
 
 ## Environment Variables
 
-Create `.env` file in backend:
-HF_API_KEY=your_huggingface_key
-ELASTICSEARCH_URL=https://your-elastic-url
-ELASTICSEARCH_USERNAME=elastic
-ELASTICSEARCH_PASSWORD=your_password
+> Create `.env` file in backend:
+> HF_API_KEY=your_huggingface_key
+> ELASTICSEARCH_URL=https://your-elastic-url
+> ELASTICSEARCH_USERNAME=elastic
+> ELASTICSEARCH_PASSWORD=your_password
 
 
 ---
@@ -156,13 +180,13 @@ ELASTICSEARCH_PASSWORD=your_password
 ## Running the Project
 
 **Start backend**
-cd backend
-npm run dev
+> cd backend
+> npm run dev
 > Backend runs on http://localhost:4000
 
 **Start frontend**
-cd frontend
-npm run dev
+> cd frontend
+> npm run dev
 > Frontend runs on http://localhost:5173
 
 ---
@@ -201,9 +225,9 @@ Focus on prompts targeting SMB CRM tools to improve visibility.
 
 ## Future Improvements
 
-- Brand sentiment analysis
-- Visualization of brand visibility trends
-- Knowledge graph for brand relationships
-- Prompt impact scoring
-- AI response monitoring over time
+> Brand sentiment analysis
+> Visualization of brand visibility trends
+> Knowledge graph for brand relationships
+> Prompt impact scoring
+> AI response monitoring over time
 
