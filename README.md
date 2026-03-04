@@ -215,19 +215,19 @@ Example:
 ---
 
 ## Example RAG Insights
-> HubSpot visibility has increased in recent responses.
-> Salesforce remains dominant in enterprise recommendations.
-> Zoho appears mostly in budget-oriented recommendations.
-**Recommendation:**
-Focus on prompts targeting SMB CRM tools to improve visibility.
+-HubSpot visibility has increased in recent responses.
+-Salesforce remains dominant in enterprise recommendations.
+-Zoho appears mostly in budget-oriented recommendations.
+-**Recommendation:**
+-Focus on prompts targeting SMB CRM tools to improve visibility.
 
 ---
 
 ## Future Improvements
 
-> Brand sentiment analysis
-> Visualization of brand visibility trends
-> Knowledge graph for brand relationships
-> Prompt impact scoring
-> AI response monitoring over time
+-Brand sentiment analysis
+-Visualization of brand visibility trends
+-Knowledge graph for brand relationships
+-Prompt impact scoring
+-AI response monitoring over time
 
