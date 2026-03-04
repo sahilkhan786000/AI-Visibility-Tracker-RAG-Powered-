@@ -168,11 +168,11 @@ npm install
 
 ## Environment Variables
 
-> Create `.env` file in backend:
-> HF_API_KEY=your_huggingface_key
-> ELASTICSEARCH_URL=https://your-elastic-url
-> ELASTICSEARCH_USERNAME=elastic
-> ELASTICSEARCH_PASSWORD=your_password
+- Create `.env` file in backend:
+- HF_API_KEY=your_huggingface_key
+- ELASTICSEARCH_URL=https://your-elastic-url
+- ELASTICSEARCH_USERNAME=elastic
+- ELASTICSEARCH_PASSWORD=your_password
 
 
 ---
@@ -180,14 +180,14 @@ npm install
 ## Running the Project
 
 **Start backend**
-> cd backend
-> npm run dev
-> Backend runs on http://localhost:4000
+- cd backend
+- npm run dev
+- Backend runs on http://localhost:4000
 
 **Start frontend**
-> cd frontend
-> npm run dev
-> Frontend runs on http://localhost:5173
+- cd frontend
+- npm run dev
+- Frontend runs on http://localhost:5173
 
 ---
 
@@ -215,19 +215,19 @@ Example:
 ---
 
 ## Example RAG Insights
--HubSpot visibility has increased in recent responses.
--Salesforce remains dominant in enterprise recommendations.
--Zoho appears mostly in budget-oriented recommendations.
--**Recommendation:**
--Focus on prompts targeting SMB CRM tools to improve visibility.
+- HubSpot visibility has increased in recent responses.
+- Salesforce remains dominant in enterprise recommendations.
+- Zoho appears mostly in budget-oriented recommendations.
+- **Recommendation:**
+Focus on prompts targeting SMB CRM tools to improve visibility.
 
 ---
 
 ## Future Improvements
 
--Brand sentiment analysis
--Visualization of brand visibility trends
--Knowledge graph for brand relationships
--Prompt impact scoring
--AI response monitoring over time
+- Brand sentiment analysis
+- Visualization of brand visibility trends
+- Knowledge graph for brand relationships
+- Prompt impact scoring
+- AI response monitoring over time
 
