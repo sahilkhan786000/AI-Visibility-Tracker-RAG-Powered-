@@ -15,12 +15,12 @@ app.use("/auth", authRoutes);
 app.use("/api/visibility", visibilityRoutes);
 app.use("/sessions", sessionRoutes);
 
-const frontendDistPath = path.join(__dirname, "../dist");
+//const frontendDistPath = path.join(__dirname, "../dist");
 
-app.use(express.static(frontendDistPath));
+//app.use(express.static(frontendDistPath));
 
-app.get("*", (_req, res) => {
-  res.sendFile(path.join(frontendDistPath, "index.html"));
-});
+// app.get("*", (_req, res) => {
+//   res.sendFile(path.join(frontendDistPath, "index.html"));
+// });
 
 export default app;

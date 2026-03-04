@@ -11,6 +11,7 @@ import MetricsOverview from "../components/dashboard/MetricsOverview";
 import Leaderboard from "../components/dashboard/LeaderBoard";
 import PromptTable from "../components/dashboard/PromptTable";
 import SessionSidebar from "../components/dashboard/SessionSidebar";
+import RAGInsights from "../components/dashboard/RAGInsights";
 
 import { checkVisibility } from "../services/visibilityApi";
 import { getSessions, saveSession } from "../services/sessionApi";
@@ -21,19 +22,21 @@ export default function Dashboard() {
   const { theme } = useTheme();
 
   const [loading, setLoading] = useState(false);
+  const [useRAG, setUseRAG] = useState(true);
 
   const [sessions, setSessions] = useState<any[]>([]);
   const [activeSession, setActiveSession] =
     useState<VisibilityResponse | null>(null);
+
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
- 
   useEffect(() => {
     getSessions()
       .then((data) => {
         setSessions(data);
+
         if (data.length > 0) {
-          setActiveSession(data[0].result); 
+          setActiveSession(data[0].result);
         }
       })
       .catch(() => {
@@ -42,38 +45,43 @@ export default function Dashboard() {
   }, []);
 
   async function runAnalysis(
-  category: string,
-  brands: string[]
-): Promise<boolean> {
-  try {
-    setLoading(true);
+    category: string,
+    brands: string[],
+    ragEnabled: boolean
+  ): Promise<boolean> {
+    try {
+      setLoading(true);
+      setUseRAG(ragEnabled);
 
-    const result = await checkVisibility(category, brands);
+      const result = await checkVisibility(category, brands, ragEnabled);
 
-    const saved = await saveSession({
-      category,
-      brands,
-      result,
-    });
+      const saved = await saveSession({
+        category,
+        brands,
+        result,
+        useRAG: ragEnabled
+      });
 
-    setSessions((prev) => [saved, ...prev]);
-    setActiveSession(saved.result);
-    setSidebarOpen(false);
+      setSessions((prev) => [saved, ...prev]);
+      setActiveSession(saved.result);
+      setSidebarOpen(false);
 
-    showSuccess("Analysis completed successfully", theme);
-    return true;
-  } catch (err: any) {
-    showError(
-      err.message ||
+      showSuccess("Analysis completed successfully", theme);
+      return true;
+
+    } catch (err: any) {
+      showError(
+        err.message ||
         "You are not authorized to run analysis. Please log in again.",
-      theme
-    );
-    return false; 
-  } finally {
-    setLoading(false);
-  }
-}
+        theme
+      );
 
+      return false;
+
+    } finally {
+      setLoading(false);
+    }
+  }
 
   return (
     <>
@@ -88,14 +96,13 @@ export default function Dashboard() {
         onClose={() => setSidebarOpen(false)}
       />
 
- 
       {theme === "space" && <SpaceVideoBackground />}
       {theme === "nature" && <NatureVideoBackground />}
 
-     
       <div className="relative z-10">
         <AppLayout onToggleSessions={() => setSidebarOpen(true)}>
           <PageFade>
+
             <AnalysisInputPanel
               onRun={runAnalysis}
               loading={loading}
@@ -107,10 +114,16 @@ export default function Dashboard() {
               <Leaderboard items={activeSession?.leaderboard} />
               <PromptTable answers={activeSession?.answers} />
             </div>
+
+            <RAGInsights
+              insights={activeSession?.rag?.insights || null}
+              similarResponses={activeSession?.rag?.similarResponses || []}
+            />
+
           </PageFade>
 
-       
-          {loading && <GlassLoader />}
+          {/* Global Loader */}
+          {loading && <GlassLoader useRAG={useRAG} />}
         </AppLayout>
       </div>
     </>

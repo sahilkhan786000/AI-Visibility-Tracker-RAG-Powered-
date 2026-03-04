@@ -1,9 +1,9 @@
-import { Router } from "express";
-import { checkVisibility } from "../controllers/visibility.controller";
-import { requireAuth } from "../middleware/auth.middleware";
-
-const router = Router();
-
-router.post("/check", requireAuth, checkVisibility);
-
+import { Router } from "express";  
+import { checkVisibility, searchSimilarResponses } from "../controllers/visibility.controller";  
+  
+const router = Router();  
+  
+router.post("/check", checkVisibility);  
+router.post("/search", searchSimilarResponses);  
+  
 export default router;

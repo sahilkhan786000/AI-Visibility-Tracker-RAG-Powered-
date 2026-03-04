@@ -1,9 +1,39 @@
 import { motion } from "framer-motion";
 import { useTheme } from "../../context/ThemeContext";
 import { themes } from "../../styles/themes";
+import { useEffect, useState } from "react";
 
-export default function GlassLoader({ text }: { text?: string }) {
+const ragStages = [
+  "Analyzing AI visibility…",
+  "Generating prompts…",
+  "Querying AI models…",
+  "Searching historical responses…",
+  "Generating insights…"
+];
+
+export default function GlassLoader({
+  text,
+  useRAG
+}: {
+  text?: string;
+  useRAG?: boolean;
+}) {
   const { theme } = useTheme();
+  const [step, setStep] = useState(0);
+
+  useEffect(() => {
+    if (!useRAG) return;
+
+    const interval = setInterval(() => {
+      setStep((prev) => (prev + 1) % ragStages.length);
+    }, 1400);
+
+    return () => clearInterval(interval);
+  }, [useRAG]);
+
+  const displayText = useRAG
+    ? ragStages[step]
+    : text ?? "Analyzing AI visibility…";
 
   return (
     <motion.div
@@ -23,7 +53,7 @@ export default function GlassLoader({ text }: { text?: string }) {
         <div className="w-10 h-10 border-2 border-white/30 border-t-white rounded-full animate-spin" />
 
         <p className={`${themes[theme].text} text-sm opacity-80`}>
-          {text ?? "Analyzing AI visibility…"}
+          {displayText}
         </p>
       </div>
     </motion.div>
